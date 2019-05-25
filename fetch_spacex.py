@@ -1,10 +1,10 @@
 import requests
 from transfer_image import download_image
 
-spacex_api_url = 'https://api.spacexdata.com/v3/launches/66'
+SPACEX_API_URL = 'https://api.spacexdata.com/v3/launches/66'
 
 def fetch_spacex_last_launch():
-    response = requests.get(spacex_api_url)
+    response = requests.get(SPACEX_API_URL)
     image_links = response.json()['links']['flickr_images']
     for link_index, link in enumerate(image_links):
         image_name = f'spacex{link_index}.jpg'

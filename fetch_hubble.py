@@ -1,7 +1,7 @@
 import requests
 from transfer_image import download_image
 
-hubble_api_url = 'http://hubblesite.org/api/v3'
+HUBBLE_API_URL = 'http://hubblesite.org/api/v3'
 
 def fetch_hubble_collection(collection_name='spacecraft'):
 
@@ -11,7 +11,7 @@ def fetch_hubble_collection(collection_name='spacecraft'):
 
     def fetch_hubble_image(image_id, image_name):
         supported_file_types = ['jpeg', 'jpg', 'png']
-        response = requests.get(f'{hubble_api_url}/image/{image_id}')
+        response = requests.get(f'{HUBBLE_API_URL}/image/{image_id}')
         image_url = response.json()['image_files'][-1]['file_url']
         file_extension = fetch_file_extension(image_url)
         if file_extension in supported_file_types:
@@ -22,7 +22,7 @@ def fetch_hubble_collection(collection_name='spacecraft'):
         'page': 'all',
         'collection_name': collection_name,
     }
-    response = requests.get(f'{hubble_api_url}/images', data=payload)
+    response = requests.get(f'{HUBBLE_API_URL}/images', data=payload)
     for image in response.json():
         fetch_hubble_image(image['id'], image['name'])
 
