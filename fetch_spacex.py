@@ -1,8 +1,7 @@
 import requests
-from download_image import download_image
+from transfer_image import download_image
 
 spacex_api_url = 'https://api.spacexdata.com/v3/launches/66'
-
 
 def fetch_spacex_last_launch():
     response = requests.get(spacex_api_url)
