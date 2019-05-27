@@ -6,6 +6,7 @@ friends.txt
 skipped.txt
 unfollowed.txt
 whitelist.txt
+*.checkpoint
 
 
 #Project
