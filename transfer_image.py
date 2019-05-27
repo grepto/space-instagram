@@ -7,11 +7,13 @@ load_dotenv()
 IMAGE_DIRECTORY = os.getenv('IMAGE_DIRECTORY')
 os.makedirs(IMAGE_DIRECTORY, exist_ok=True)
 
+
 def download_image(image_url, image_name):
     image_file_name = os.path.join(IMAGE_DIRECTORY, image_name)
     response = requests.get(image_url)
     with open(image_file_name, 'wb') as file:
         file.write(response.content)
+
 
 def upload_images_to_instagram():
     load_dotenv()
