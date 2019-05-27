@@ -5,12 +5,16 @@ import requests
 
 load_dotenv()
 IMAGE_DIRECTORY = os.getenv('IMAGE_DIRECTORY')
-os.makedirs(IMAGE_DIRECTORY, exist_ok=True)
+
+if not os.path.exists(IMAGE_DIRECTORY):
+    raise NotADirectoryError(f'Image directory {IMAGE_DIRECTORY} not fount')
 
 
 def download_image(image_url, image_name):
     image_file_name = os.path.join(IMAGE_DIRECTORY, image_name)
     response = requests.get(image_url)
+    if not response.ok:
+        return None
     with open(image_file_name, 'wb') as file:
         file.write(response.content)
 
@@ -31,7 +35,7 @@ def upload_images_to_instagram():
     try:
         with open(POSTED_IMAGES_FILE, 'r', encoding='utf8') as f:
             posted_images = f.read().splitlines()
-    except Exception:
+    except FileNotFoundError:
         posted_images = []
 
     image_files = os.listdir(IMAGE_DIRECTORY)
