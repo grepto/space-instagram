@@ -9,11 +9,14 @@ POSTED_IMAGES_FILE = os.getenv('POSTED_IMAGES_FILE')
 INSTAGRAM_LOGIN = os.getenv('INSTAGRAM_LOGIN')
 INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
 
-if not os.path.exists(IMAGE_DIRECTORY):
-    raise NotADirectoryError(f'Image directory {IMAGE_DIRECTORY} not fount')
+
+def check_image_directory_exists():
+    if not os.path.exists(IMAGE_DIRECTORY):
+        raise NotADirectoryError(f'Image directory {IMAGE_DIRECTORY} not fount')
 
 
 def download_image(image_url, image_name):
+    check_image_directory_exists()
     image_file_name = os.path.join(IMAGE_DIRECTORY, image_name)
     response = requests.get(image_url)
     if not response.ok:
@@ -23,6 +26,7 @@ def download_image(image_url, image_name):
 
 
 def post_image_to_instagram(image_name, caption=''):
+    check_image_directory_exists()
     bot = Bot()
     bot.login(username=INSTAGRAM_LOGIN, password=INSTAGRAM_PASSWORD)
     image_file_name = os.path.join(IMAGE_DIRECTORY, image_name)
@@ -44,6 +48,7 @@ def add_posted_images(posted_images):
 
 
 def upload_images_to_instagram():
+    check_image_directory_exists()
     image_files = os.listdir(IMAGE_DIRECTORY)
     posted_images = get_posted_images()
     for image in image_files:
