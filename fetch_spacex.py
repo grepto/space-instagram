@@ -1,7 +1,11 @@
 import requests
 from transfer_image import download_image
+from dotenv import load_dotenv
+import os
 
-SPACEX_API_URL = 'https://api.spacexdata.com/v3/launches/66'
+load_dotenv()
+SPACEX_API_URL = os.getenv('SPACEX_API_URL')
+
 
 def fetch_spacex_last_launch():
     response = requests.get(SPACEX_API_URL)
