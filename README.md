@@ -6,11 +6,21 @@
 ### Как установить
 В корне нужно создать файл `.env` и прописать в него строки с логином и паролем от инстаграм-аккаунта,
 В параметре IMAGE_DIRECTORY нужно указать название папки в которую будут скачиваться изображения. 
+В POSTED_IMAGES_FILE нужно указать название файла в который приложение будет записывать названия опубликованных
+фотографий
+В HUBBLE_API_URL нужно указать адрес API для получения изображений с телескопа HUBBLE. На момент последнего изменения
+корректный адрес - http://hubblesite.org/api/v3
+В SPACEX_API_URL нужно указать адрес API для получения изображений пусков ракет SPACEX. На момент последнего изменения
+корректный адрес - https://api.spacexdata.com/v3/launches/66
 
+Пример содержимого файла `.env`
 ```.env
 INSTAGRAM_LOGIN=ваш_логин_в_инстаграмм
 INSTAGRAM_PASSWORD=ваш_пароль_в_инстаграмм
-IMAGE_DIRECTORY=название_папки_для_изображений
+IMAGE_DIRECTORY=images
+POSTED_IMAGES_FILE=posted_images.txt
+HUBBLE_API_URL=http://hubblesite.org/api/v3
+SPACEX_API_URL=https://api.spacexdata.com/v3/launches/66
 ```
 
 Скрипт использует следующие библиотеки
