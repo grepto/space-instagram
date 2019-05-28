@@ -4,10 +4,12 @@ from transfer_image import upload_images_to_instagram
 
 
 if __name__ == '__main__':
-    fetch_spacex_last_launch()
+    print('Download images from spacex')
+    # fetch_spacex_last_launch()
+    #
+    print('Download images from hubble')
+    # collection_name = 'spacecraft'
+    # fetch_hubble_collection()
 
-    collection_name = 'spacecraft'
-    fetch_hubble_collection()
-
-    print('upload_images_to_instagram')
+    print('Upload images to instagram')
     upload_images_to_instagram()
