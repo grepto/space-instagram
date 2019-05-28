@@ -1,4 +1,5 @@
 import requests
+import os
 from transfer_image import download_image
 
 HUBBLE_API_URL = 'http://hubblesite.org/api/v3'
@@ -7,8 +8,7 @@ HUBBLE_API_URL = 'http://hubblesite.org/api/v3'
 def fetch_hubble_collection(collection_name='spacecraft'):
 
     def fetch_file_extension(link):
-        extension = link.split('.')[-1]
-        return extension
+        return os.path.splitext(link)[1][1:]
 
     def fetch_hubble_image(image_id, image_name):
         supported_file_types = ['jpeg', 'jpg', 'png']
